@@ -23,7 +23,8 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 - Full multi-section marketing site (React + Tailwind, Cormorant Garamond / Manrope / JetBrains Mono, warm bone + slate navy editorial palette)
 - Kinetic hero with masked line-by-line reveal + parallax portrait in clipped frame
 - Slow editorial trust marquee (react-fast-marquee)
-- Positioning statement, Who-should-consult checklist, Philosophy manifesto (dark navy, sticky layout, chapters 01–06), Categories hover-invert rows 01–04, Facility section with parallax clinic image
+- Positioning statement, Who-should-consult checklist, Philosophy manifesto (dark navy, sticky layout, chapters 01–06), Categories hover-invert rows 01–04
+- Facility/Dental Avenue positioning section removed per user request (2026-08-30); FAQ and footer reworded to generic "well-equipped clinical facilities in Chennai"
 - Backend (FastAPI + MongoDB): POST /api/consultations (intake), GET /api/consultations (guarded by x-admin-key), POST /api/ask (SSE-streamed AI assistant, gpt-5.4 via Emergent Universal Key, chat history persisted)
 - Frontend chat widget with streaming responses, session persistence
 - WhatsApp deep links with pre-filled messages (+91 90434 32286)

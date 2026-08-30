@@ -9,7 +9,6 @@ import Positioning from "@/components/Positioning";
 import WhoShouldConsult from "@/components/WhoShouldConsult";
 import Philosophy from "@/components/Philosophy";
 import Categories from "@/components/Categories";
-import Facility from "@/components/Facility";
 import ConsultForm from "@/components/ConsultForm";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
@@ -28,7 +27,6 @@ function App() {
             <WhoShouldConsult />
             <Philosophy />
             <Categories />
-            <Facility />
             <ConsultForm />
             <Faq />
           </main>

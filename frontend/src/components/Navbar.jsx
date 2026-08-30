@@ -4,7 +4,6 @@ import { waLink, scrollToId } from "@/lib/site";
 const links = [
   ["Philosophy", "philosophy"],
   ["Expertise", "expertise"],
-  ["Facility", "facility"],
   ["FAQ", "faq"],
 ];
 

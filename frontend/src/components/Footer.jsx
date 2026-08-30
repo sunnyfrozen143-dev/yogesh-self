@@ -29,7 +29,7 @@ export default function Footer() {
               <Mail className="w-4 h-4" /> {EMAIL}
             </a>
             <p className="flex items-center gap-3">
-              <MapPin className="w-4 h-4" /> Chennai, Tamil Nadu — consultations at selected clinical facilities, including The Dental Avenue
+              <MapPin className="w-4 h-4" /> Chennai, Tamil Nadu — consultations at well-equipped clinical facilities
             </p>
           </div>
         </div>

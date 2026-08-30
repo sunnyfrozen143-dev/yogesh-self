@@ -35,6 +35,7 @@ class ConsultationCreate(BaseModel):
     phone: str = Field(min_length=6, max_length=20)
     chief_complaint: str = Field(min_length=2, max_length=500)
     goal: Optional[str] = ""
+    mode: Optional[str] = Field(default="in_person", pattern="^(in_person|online_screening)$")
 
 
 @api_router.get("/")

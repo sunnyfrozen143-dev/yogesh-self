@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { Plus } from "lucide-react";
 import { Reveal, Overline } from "@/components/Reveal";
 import { scrollToId } from "@/lib/site";
 
@@ -42,9 +44,42 @@ const cases = [
     changed:
       "A full-mouth rehabilitation with implant-supported teeth where bone had been missing for fifteen years, a corrected bite plane, and chewing function the patient had stopped expecting to get back.",
   },
+  {
+    meta: ["Case 05", "Maxillofacial Prosthesis · Obturator", "Patient in their early 60s"],
+    title: "After jaw surgery removed half her palate — eating and speaking again",
+    presented:
+      "A lady in her sixties whose right upper jaw had been surgically removed (a maxillectomy defect), leaving an open communication between her mouth and nasal cavity. Food and liquids escaped, speech was nasal, and the missing teeth on that side made chewing impossible.",
+    thinking:
+      "This is prosthodontics at its most specialised: the defect cannot be regrown, but it can be sealed and restored. A definitive hollow-bulb obturator was planned — hollow so it stays light enough to wear all day — with a CAD-designed metal framework for precise, stable fit on the remaining teeth, and a removable partial denture for the lower arch to rebuild the bite as a whole.",
+    changed:
+      "The obturator sealed the defect: normal swallowing, clearer speech, restored chewing on a prosthesis light enough to live with. Cases like this are why maxillofacial prosthetics is a specialty, not an accessory.",
+  },
+  {
+    meta: ["Case 06", "Digital Smile Design · Veneers", "Smile & aesthetic rehabilitation"],
+    title: "A new smile the patient approved before a single tooth was touched",
+    presented:
+      "A patient unhappy with the appearance of their upper front teeth, but understandably anxious about the one thing aesthetic dentistry cannot easily undo: preparing teeth for veneers based on a picture in someone else's head.",
+    thinking:
+      "The smile was designed before it was made. A 2D digital smile design was built over the patient's own photographs and smile line, converted into a digital mock-up, and then bonded onto the teeth as a temporary trial smile — worn, seen in the mirror, judged in daylight. Only after the patient approved their own smile did veneer preparation begin, followed by a bisque trial before final cementation.",
+    changed:
+      "Veneers on the upper front teeth that matched a smile the patient had already lived with and approved. No guesswork, no surprise on the day of cementation — design first, dentistry second.",
+  },
+  {
+    meta: ["Case 07", "Fully Guided All-on-6 · Immediate Loading", "Patient in their mid 40s"],
+    title: "Failing lower teeth to fixed teeth — in one guided surgical visit",
+    presented:
+      "A patient in her forties whose remaining lower teeth were beyond saving. Her priority was blunt and reasonable: she did not want to spend months without teeth, and she did not want surprises during surgery.",
+    thinking:
+      "The entire surgery was performed digitally before it was performed clinically. From the CBCT and digital scans, a full-arch plan was designed and a surgical guide printed — every implant's position, angle and depth decided in advance. On the day: extraction of the failing teeth, fully guided placement of six implants, and immediate loading with a fixed provisional arch in the same appointment.",
+    changed:
+      "She left the surgical visit with fixed teeth. The guided workflow turned a complex free-hand operation into a rehearsed, predictable procedure — precision planned on screen, delivered in the chair.",
+  },
 ];
 
 export default function CaseStories() {
+  const [showAll, setShowAll] = useState(false);
+  const visible = showAll ? cases : cases.slice(0, 4);
+
   return (
     <section
       data-testid="case-stories-section"
@@ -65,7 +100,7 @@ export default function CaseStories() {
         </Reveal>
 
         <div className="space-y-0">
-          {cases.map((c, i) => (
+          {visible.map((c, i) => (
             <Reveal key={c.meta[0]} delay={0.05 * i}>
               <article
                 data-testid={`case-story-${i + 1}`}
@@ -106,6 +141,19 @@ export default function CaseStories() {
             </Reveal>
           ))}
         </div>
+
+        {!showAll && (
+          <Reveal className="mt-2">
+            <button
+              data-testid="case-stories-show-more"
+              onClick={() => setShowAll(true)}
+              className="group w-full border border-border bg-background py-6 flex items-center justify-center gap-3 text-sm tracking-wide hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
+            >
+              <Plus className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+              View {cases.length - 4} more case stories
+            </button>
+          </Reveal>
+        )}
 
         <Reveal className="mt-16 flex flex-wrap items-center justify-between gap-6">
           <p className="text-sm text-muted-foreground max-w-md leading-relaxed">

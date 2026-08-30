@@ -126,6 +126,7 @@ async def notify_new_consultation(doc: dict) -> None:
             + _row("Phone / WhatsApp", doc["phone"])
             + _row("Chief concern", doc["chief_complaint"])
             + _row("Goal", doc.get("goal") or "—")
+            + _row("Preferred mode", "Online screening (video)" if doc.get("mode") == "online_screening" else "In-person · Chennai")
             + _row("Received", doc["created_at"])
             + '<tr><td colspan="2" style="padding:16px;font-size:12px;color:#888">'
             f'Sent by {escape(EMAIL_FROM_NAME)}. Open your enquiries dashboard (/admin on your website) '

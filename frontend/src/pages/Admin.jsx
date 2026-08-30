@@ -205,6 +205,9 @@ export default function Admin() {
                   <p className="mt-1 text-sm text-muted-foreground">
                     {r.age} yrs · {r.location}
                   </p>
+                  <p className="mt-1 font-mono text-[10px] tracking-[0.15em] uppercase text-slate-500">
+                    {r.mode === "online_screening" ? "Online screening requested" : "In-person · Chennai"}
+                  </p>
                   <p className="mt-2 font-mono text-xs text-muted-foreground">{fmtDate(r.created_at)}</p>
                 </div>
                 <div className="lg:col-span-5">

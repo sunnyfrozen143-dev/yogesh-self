@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link, useParams, Navigate } from "react-router-dom";
 import { ArrowLeft, ArrowUpRight, MessageCircle } from "lucide-react";
 import { getArticle, articles } from "@/lib/articles";
-import { waLink, WHATSAPP_DISPLAY } from "@/lib/site";
+import { waLink, WHATSAPP_DISPLAY, setMeta, DEFAULT_TITLE, DEFAULT_DESC } from "@/lib/site";
 
 export default function Article() {
   const { slug } = useParams();
@@ -10,11 +10,11 @@ export default function Article() {
 
   useEffect(() => {
     if (article) {
-      document.title = `${article.title} — Dr. Yogesh Kumar`;
+      setMeta(`${article.title} — Dr. Yogesh Kumar`, article.dek);
       window.scrollTo(0, 0);
     }
     return () => {
-      document.title = "Dr. Yogesh Kumar — Prosthodontist & Implantologist, Chennai";
+      setMeta(DEFAULT_TITLE, DEFAULT_DESC);
     };
   }, [article]);
 

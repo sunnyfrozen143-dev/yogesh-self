@@ -8,15 +8,16 @@ const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const steps = [
   "You share your concerns below",
-  "The coordinator calls you for pre-consultation guidance",
-  "You meet Dr. Yogesh for a specialist consultation",
+  "The coordinator calls you for pre-consultation guidance and booking",
+  "Optional: an online video consultation for initial screening",
+  "You meet Dr. Yogesh in Chennai for your specialist consultation",
 ];
 
 const inputCls =
   "w-full bg-white border border-input px-4 py-3.5 text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-ring/30 focus:border-foreground transition-colors duration-300";
 
 export default function ConsultForm() {
-  const [form, setForm] = useState({ name: "", age: "", location: "", phone: "", chief_complaint: "", goal: "" });
+  const [form, setForm] = useState({ name: "", age: "", location: "", phone: "", chief_complaint: "", goal: "", mode: "in_person" });
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
@@ -50,6 +51,12 @@ export default function ConsultForm() {
                 A specialist consultation is a structured experience — not “what
                 problem do you have?” For complex cases it can take 60–90 minutes,
                 because the plan deserves that time.
+              </p>
+              <p className="mt-5 text-sm text-muted-foreground leading-relaxed max-w-md border-l-2 border-foreground/20 pl-4">
+                Consultations are held in <span className="text-foreground">Chennai</span>.
+                Travelling from outside? After booking, an online video consultation
+                can be arranged for initial screening — so your case is assessed
+                before you travel.
               </p>
               <ol className="mt-10 space-y-5">
                 {steps.map((s, i) => (
@@ -126,6 +133,34 @@ export default function ConsultForm() {
                     What would you most like to be able to do again?
                   </label>
                   <textarea data-testid="consult-goal-input" rows={4} value={form.goal} onChange={set("goal")} className={inputCls} placeholder="e.g. I want to eat normally with my family." />
+                </div>
+                <div>
+                  <label className="block font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-2.5">
+                    Preferred first consultation
+                  </label>
+                  <div className="grid sm:grid-cols-2 gap-3">
+                    {[
+                      ["in_person", "In-person", "At the clinical facility · Chennai"],
+                      ["online_screening", "Online screening first", "Video call after booking — ideal if travelling from outside Chennai"],
+                    ].map(([value, label, hint]) => (
+                      <button
+                        key={value}
+                        type="button"
+                        data-testid={`consult-mode-${value}`}
+                        onClick={() => setForm({ ...form, mode: value })}
+                        className={`text-left border px-4 py-3.5 transition-colors duration-300 ${
+                          form.mode === value
+                            ? "border-foreground bg-primary text-primary-foreground"
+                            : "border-input bg-white hover:border-foreground/50"
+                        }`}
+                      >
+                        <span className="block text-sm">{label}</span>
+                        <span className={`block mt-1 text-xs leading-snug ${form.mode === value ? "text-slate-300" : "text-muted-foreground"}`}>
+                          {hint}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 {error && <p data-testid="consult-error" className="text-sm text-red-700">{error}</p>}
                 <button

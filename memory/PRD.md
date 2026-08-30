@@ -45,6 +45,12 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 - PPTX source saved insights: obturator, smile design veneers, TMD, guided surgery cases available for future case stories/articles (file was 106MB, not stored in repo).
 - Testing agent iteration_2: 100% frontend pass.
 
+## Implemented (2026-06 fork session, part 3)
+- SEO & Search visibility: OG/Twitter meta tags in index.html (portrait as share image → WhatsApp/social preview cards), public/sitemap.xml (6 URLs), public/robots.txt (Disallow /admin), per-article meta description via setMeta helper in lib/site.js. NOTE: sitemap/robots URLs hardcoded to preview domain — update when custom domain is added.
+- 3 more case stories from PPTX (total 7): Case 05 maxillectomy hollow-bulb obturator, Case 06 digital smile design veneers (trial smile first), Case 07 fully guided All-on-6 immediate loading. Section shows 4 with "View 3 more case stories" expander (case-stories-show-more).
+- Consultation mode flow: consult form now has "Preferred first consultation" selector — In-person (Chennai) or Online screening first (video after booking, for outstation patients). Backend ConsultationCreate.mode field (validated enum, 422 on invalid), shown in admin dashboard + alert email. Copy updated in form sidebar (4 steps) and FAQ ("Where will my consultation take place?").
+- Self-tested: sitemap/robots 200, OG tags served, POST with mode=online_screening + email fired, invalid mode 422, mode selector + 7-case expand verified via screenshot.
+
 ## Backlog
 - P0: Confirm alert email address (currently assumed dryogeshkumar@gmail.com in backend/.env OWNER_EMAIL)
 - P2: SEO: OG images, sitemap, meta descriptions per article
@@ -55,5 +61,5 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 
 ## Next Tasks
 1. Confirm correct alert email address (OWNER_EMAIL in backend/.env)
-2. Add SEO meta/OG tags + sitemap for the article pages
+2. Update sitemap.xml/robots.txt URLs when custom domain is connected
 3. Optional: WhatsApp notification to doctor in addition to email

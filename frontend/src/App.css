@@ -1,0 +1,7 @@
+.text-balance {
+    text-wrap: balance;
+}
+
+.clipped-frame {
+    clip-path: polygon(0 0, 100% 4%, 98% 100%, 0% 96%);
+}

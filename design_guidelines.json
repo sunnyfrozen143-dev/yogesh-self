@@ -1,0 +1,99 @@
+{
+  "theme": "light",
+  "colors": {
+    "primary": "#0F172A",
+    "secondary": "#334155",
+    "accent": "#0F172A",
+    "background": "#F4F4F0",
+    "surface": "#FFFFFF",
+    "text_primary": "#020617",
+    "text_secondary": "#475569",
+    "border": "#E2E8F0",
+    "description": "Editorial Clinical Archetype. A calming Warm Bone/Sand (#F4F4F0) background with deep, sophisticated Slate Blue/Navy text for a non-sterile, luxury clinical feel. No purple/violet gradients."
+  },
+  "typography": {
+    "headings": "Cormorant Garamond",
+    "body": "Manrope",
+    "mono": "JetBrains Mono",
+    "description": "Cormorant Garamond for elegant, calm authority in headings. Manrope for crisp, highly readable clinical body text.",
+    "rules": [
+      "No Inter or Roboto.",
+      "Headings use tight letter spacing (tracking-tight or tracking-tighter).",
+      "Overlines use uppercase and wide tracking (tracking-[0.2em]).",
+      "Heading maximum size is text-6xl. Do not use text-8xl+ for main headings."
+    ]
+  },
+  "visual_enhancers": {
+    "shadows": "Soft, diffuse ambient shadows for cards. No harsh box-shadows. Prefer border-only separation in some cases.",
+    "borders": "1px solid #E2E8F0 or #CBD5E1 for crisp definition on forms and UI elements.",
+    "radius": "rounded-none or minimal rounded-sm to maintain an editorial, serious, specialist edge.",
+    "textures": "Subtle noise overlay (opacity 0.03) to break digital flatness."
+  },
+  "layouts": {
+    "hero": "Kinetic hero with large typography. Asymmetrical image placement with subtle parallax.",
+    "manifesto": "Numbered chapters (01-06) for the 6-step treatment philosophy. Use vertical scrolling with sticky layout or bold typography reveals.",
+    "clinical_categories": "Bento grid (Mode A: Tetris Grid) or large full-width rows with hover reveals (01-04).",
+    "general": "Generous spacing. Use p-8 to p-24 padding. Never center-everything. Emphasize asymmetry and negative space."
+  },
+  "motion": {
+    "hero_reveal": "Masked line-by-line text reveal on load using framer-motion (overflow-hidden wrapper around each line, animate y from 100% to 0).",
+    "scrolling": "Lenis smooth momentum scrolling (Mandatory).",
+    "scroll_reveals": "Framer-motion fade up and slight translateY for sections as they enter viewport.",
+    "marquee": "Slow editorial marquee for the Trust Stack (MDS qualification, TRIOS 3 digital workflow, process, continuity). Use react-fast-marquee.",
+    "parallax": "Subtle parallax on the hero image and clinical macro shots."
+  },
+  "components": {
+    "patient_intake_form": "Shadcn UI Form, Input, Textarea. Clean, editorial styling. Fields: Name, age, location, chief complaint, 'What would you most like to be able to do again?'.",
+    "faq": "Shadcn UI Accordion.",
+    "ai_chat": "Fixed bottom-right chat widget, styled cleanly in brand colors. Mock the conversation logic.",
+    "whatsapp_cta": "Prominent CTA for WhatsApp (+91 9043432286). Could be floating or prominently placed in nav/hero.",
+    "general_rules": "Use pure HTML/Tailwind for marketing layouts. Use Shadcn ONLY for interactive elements (Forms, Accordion). Do not use Shadcn 'Card' for creative sections."
+  },
+  "accessibility": {
+    "contrast": "Ensure 4.5:1 contrast ratio. Dark slate text on warm sand meets this easily.",
+    "focus": "Clear focus rings on all interactive elements.",
+    "motion": "Respect prefers-reduced-motion for framer-motion animations.",
+    "data_testid": "All interactive and key informational elements MUST include a data-testid attribute (e.g., data-testid='request-consultation-btn')."
+  },
+  "media": {
+    "hero_portrait": {
+      "url": "https://images.pexels.com/photos/19438563/pexels-photo-19438563.jpeg",
+      "description": "South Asian male doctor portrait for the hero section."
+    },
+    "macro_implant": {
+      "url": "https://images.pexels.com/photos/6502305/pexels-photo-6502305.jpeg",
+      "description": "Detailed macro shot of a dental implant for clinical categories or philosophy."
+    },
+    "clinic_interior": {
+      "url": "https://images.pexels.com/photos/6812507/pexels-photo-6812507.jpeg",
+      "description": "Premium dental clinic interior for the facility note section."
+    }
+  },
+  "libraries": {
+    "framer_motion": "yarn add framer-motion",
+    "lenis": "yarn add @studio-freight/react-lenis",
+    "lucide_react": "Already installed, use for minimal icons.",
+    "react_fast_marquee": "yarn add react-fast-marquee"
+  },
+  "instructions_to_main_agent": [
+    "Implement Lenis smooth scrolling globally.",
+    "Build the masked line-by-line text reveal in the hero using framer-motion.",
+    "Use pure HTML/Tailwind for marketing layouts. Do not trap yourself in rigid Shadcn components for structural sections.",
+    "No centered uniform card grids. Use asymmetrical layouts and large typography.",
+    "Implement the 6-step treatment philosophy with large numbers (01, 02, etc.) in Cormorant Garamond.",
+    "Integrate an AI chat widget component (mocked logic or simple UI for now, but fully styled).",
+    "Ensure the Patient Intake Form has the specific fields requested.",
+    "Do NOT use transparent backgrounds for headers over content. Use backdrop-blur and a semi-solid background.",
+    "Do not add .App { text-align: center; } in CSS."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "Do not converge toward generic AI outputs. Avoid purple/violet gradients.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Use glass-morphism effects carefully if needed, but prefer solid editorial surfaces for this medical site.",
+    "You MUST NOT apply universal transition (transition: all).",
+    "You MUST NOT center align the app container.",
+    "Every interaction needs micro-animations - hover states, transitions.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "All interactive and key informational elements MUST include a data-testid attribute."
+  ]
+}

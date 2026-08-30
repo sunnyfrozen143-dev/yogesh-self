@@ -1,4 +1,6 @@
+import { ExternalLink } from "lucide-react";
 import { Reveal, Overline } from "@/components/Reveal";
+import { GOOGLE_REVIEW_URL } from "@/lib/site";
 
 const voices = [
   {
@@ -80,11 +82,21 @@ export default function Testimonials() {
           </div>
         </div>
 
-        <Reveal className="mt-12">
-          <p className="text-xs text-muted-foreground leading-relaxed">
+        <Reveal className="mt-12 flex flex-wrap items-center justify-between gap-6">
+          <p className="text-xs text-muted-foreground leading-relaxed max-w-md">
             Shared with permission. Names withheld and details lightly edited to
             protect patient privacy. Individual experiences vary — no outcome is promised.
           </p>
+          <a
+            data-testid="google-review-link"
+            href={GOOGLE_REVIEW_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 border border-foreground/25 px-6 py-3.5 text-sm hover:border-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
+          >
+            Treated by Dr. Yogesh? Review us on Google
+            <ExternalLink className="w-4 h-4" />
+          </a>
         </Reveal>
       </div>
     </section>

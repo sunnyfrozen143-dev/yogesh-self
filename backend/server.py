@@ -10,7 +10,9 @@ import uuid
 from pathlib import Path
 from pydantic import BaseModel, Field
 from typing import Optional
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+from apscheduler.schedulers.asyncio import AsyncIOScheduler
+from apscheduler.triggers.cron import CronTrigger
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
@@ -68,6 +70,26 @@ async def update_consultation_status(cid: str, input: StatusUpdate, request: Req
     res = await db.consultations.update_one({"id": cid}, {"$set": {"status": input.status}})
     if res.matched_count == 0:
         return JSONResponse(status_code=404, content={"detail": "not found"})
+    return {"ok": True}
+
+
+async def run_weekly_digest():
+    from emailer import send_weekly_digest
+    since = (datetime.now(timezone.utc) - timedelta(days=7)).isoformat()
+    docs = await db.consultations.find(
+        {"created_at": {"$gte": since}}, {"_id": 0}
+    ).sort("created_at", -1).to_list(200)
+    counts = {}
+    async for g in db.consultations.aggregate([{"$group": {"_id": "$status", "n": {"$sum": 1}}}]):
+        counts[g["_id"] or "new"] = g["n"]
+    await send_weekly_digest(docs, counts)
+
+
+@api_router.post("/digest/send")
+async def trigger_digest(request: Request):
+    if not _admin_ok(request):
+        return JSONResponse(status_code=401, content={"detail": "unauthorized"})
+    await run_weekly_digest()
     return {"ok": True}
 
 
@@ -169,6 +191,16 @@ logging.basicConfig(
 )
 
 
+scheduler = AsyncIOScheduler(timezone="Asia/Kolkata")
+
+
+@app.on_event("startup")
+async def start_scheduler():
+    scheduler.add_job(run_weekly_digest, CronTrigger(day_of_week="mon", hour=9, minute=0))
+    scheduler.start()
+
+
 @app.on_event("shutdown")
 async def shutdown_db_client():
+    scheduler.shutdown(wait=False)
     client.close()

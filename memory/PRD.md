@@ -63,8 +63,15 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 - WhatsApp follow-up message after form submit now includes preferred mode and, for online screening, the requested day/time slot.
 - Self-tested: testimonials section screenshot; WhatsApp href logic verified by code (not submitted — avoids real email).
 
+## Implemented (2026-06 fork session, part 6)
+- Weekly digest: APScheduler cron (Mon 9:00 AM IST) emails OWNER_EMAIL a summary of last 7 days' enquiries (table: patient/concern/mode/status) + all-time status counts. Manual trigger POST /api/digest/send (admin-key guarded, 401 without). Verified live send.
+- Alert email CONFIRMED and updated everywhere to dryogeshkumar1212@gmail.com (backend/.env OWNER_EMAIL, site.js EMAIL, test_credentials.md).
+- Google review link in Testimonials section (google-review-link) — PLACEHOLDER: Google search URL for "Dr Yogesh Kumar M Prosthodontist Chennai reviews" in site.js GOOGLE_REVIEW_URL. Swap with real Google Business Profile review link (g.page/r/.../review) when user provides it.
+- Real testimonial quotes: still pending from user (placeholders in Testimonials.jsx).
+
 ## Backlog
-- P0: Confirm alert email address (currently assumed dryogeshkumar@gmail.com in backend/.env OWNER_EMAIL)
+- P0: Swap GOOGLE_REVIEW_URL placeholder with real Google Business Profile review link (user to provide)
+- P0: Replace placeholder testimonial quotes with real patient feedback (user to provide)
 - P2: SEO: OG images, sitemap, meta descriptions per article
 - P2: More case stories/articles from remaining PPTX cases (obturator/maxillofacial prosthesis, smile design veneers, guided full-arch, implant-supported overdenture)
 - P2: Google Business Profile + Search Console; custom domain on Dr. Yogesh's name

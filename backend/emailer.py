@@ -103,6 +103,51 @@ async def send_email(*, to: str, subject: str, html: str) -> str | None:
     return resp.json().get("id")
 
 
+async def send_weekly_digest(docs: list, counts: dict) -> None:
+    if not (EMAIL_KEY and EMAIL_FROM_NAME and OWNER_EMAIL):
+        logger.warning("Weekly digest skipped: email env vars not configured")
+        return
+    try:
+        n = len(docs)
+        subject = f"Weekly enquiries digest — {n} new request{'s' if n != 1 else ''} this week"
+        summary = " · ".join(f"{k}: {v}" for k, v in counts.items()) or "no enquiries yet"
+        if docs:
+            body_rows = "".join(
+                '<tr>'
+                f'<td style="padding:10px 12px;font-size:13px;color:#0f172a;border-bottom:1px solid #e2e8f0;vertical-align:top">{escape(d["name"])}<br>'
+                f'<span style="font-size:11px;color:#64748b">{escape(d["location"])} · {escape(str(d["age"]))} yrs · {escape(d["phone"])}</span></td>'
+                f'<td style="padding:10px 12px;font-size:12px;color:#334155;border-bottom:1px solid #e2e8f0;vertical-align:top">{escape(d["chief_complaint"])}<br>'
+                f'<span style="font-size:11px;color:#64748b">{"Online screening" if d.get("mode") == "online_screening" else "In-person · Chennai"}</span></td>'
+                f'<td style="padding:10px 12px;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#64748b;border-bottom:1px solid #e2e8f0;vertical-align:top">{escape(d.get("status", "new"))}</td>'
+                '</tr>'
+                for d in docs
+            )
+            table = ('<tr><td style="padding:8px 16px 20px"><table width="100%" style="border-collapse:collapse">'
+                     '<tr><td style="padding:8px 12px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#64748b">Patient</td>'
+                     '<td style="padding:8px 12px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#64748b">Concern</td>'
+                     '<td style="padding:8px 12px;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#64748b">Status</td></tr>'
+                     + body_rows + '</table></td></tr>')
+        else:
+            table = '<tr><td style="padding:20px 16px;font-size:14px;color:#334155">No new enquiries this week.</td></tr>'
+        html = (
+            '<table role="presentation" width="100%" style="max-width:640px;font-family:Arial,sans-serif;'
+            'border:1px solid #e2e8f0;border-collapse:collapse">'
+            '<tr><td style="padding:20px 16px;background:#0f172a;color:#f4f4f0;font-size:16px">'
+            f'Weekly enquiries digest</td></tr>'
+            f'<tr><td style="padding:16px;font-size:13px;color:#334155">New requests in the last 7 days: '
+            f'<strong>{n}</strong><br><span style="font-size:12px;color:#64748b">All-time by status — {escape(summary)}</span></td></tr>'
+            + table +
+            '<tr><td style="padding:16px;font-size:12px;color:#888">'
+            f'Sent by {escape(EMAIL_FROM_NAME)} every Monday at 9:00 AM IST. Open your enquiries '
+            'dashboard (/admin on your website) to manage requests.'
+            '</td></tr></table>'
+        )
+        await send_email(to=OWNER_EMAIL, subject=subject, html=html)
+        logger.info(f"Weekly digest emailed to {OWNER_EMAIL} ({n} new)")
+    except Exception as e:
+        logger.error(f"Weekly digest email failed: {e}")
+
+
 def _row(label: str, value: str) -> str:
     return (f'<tr><td style="padding:8px 16px;font-size:11px;letter-spacing:1px;'
             f'text-transform:uppercase;color:#64748b;white-space:nowrap;vertical-align:top">{label}</td>'

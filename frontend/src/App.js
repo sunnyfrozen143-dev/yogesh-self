@@ -13,6 +13,7 @@ import Philosophy from "@/components/Philosophy";
 import Categories from "@/components/Categories";
 import CaseStories from "@/components/CaseStories";
 import Learn from "@/components/Learn";
+import Testimonials from "@/components/Testimonials";
 import ConsultForm from "@/components/ConsultForm";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
@@ -46,6 +47,7 @@ function Landing() {
             <Categories />
             <CaseStories />
             <Learn />
+            <Testimonials />
             <ConsultForm />
             <Faq />
           </main>

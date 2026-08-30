@@ -58,6 +58,11 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 - Custom-domain alert email: NOT possible yet — user wants an inbox on the website domain; requires purchasing a custom domain + email hosting (e.g., Zoho Mail/Google Workspace). Alerts remain to dryogeshkumar@gmail.com until then.
 - Self-tested: JSON-LD parse, POST with slot fields + email fired, slot picker UI screenshot (10 date chips, time selection).
 
+## Implemented (2026-06 fork session, part 5)
+- Testimonials "Patient voices" section (components/Testimonials.jsx, id="voices") between Learn and ConsultForm: 1 featured large quote + 4 grid quotes (representative, privacy disclaimer included). NOTE: quotes are representative placeholders — replace with real patient quotes when Dr. Yogesh provides them.
+- WhatsApp follow-up message after form submit now includes preferred mode and, for online screening, the requested day/time slot.
+- Self-tested: testimonials section screenshot; WhatsApp href logic verified by code (not submitted — avoids real email).
+
 ## Backlog
 - P0: Confirm alert email address (currently assumed dryogeshkumar@gmail.com in backend/.env OWNER_EMAIL)
 - P2: SEO: OG images, sitemap, meta descriptions per article

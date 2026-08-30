@@ -118,7 +118,12 @@ export default function ConsultForm() {
                 </p>
                 <a
                   data-testid="whatsapp-followup-btn"
-                  href={waLink(`Hello Dr. Yogesh, I just submitted a consultation request.\nName: ${form.name}\nAge: ${form.age}\nLocation: ${form.location}\nConcern: ${form.chief_complaint}`)}
+                  href={waLink(
+                    `Hello Dr. Yogesh, I just submitted a consultation request.\nName: ${form.name}\nAge: ${form.age}\nLocation: ${form.location}\nConcern: ${form.chief_complaint}` +
+                    (form.mode === "online_screening"
+                      ? `\nPreferred: Online screening consultation${form.preferred_date ? `\nRequested day: ${form.preferred_date}` : ""}${form.preferred_time ? `\nRequested time: ${form.preferred_time}` : ""}`
+                      : "\nPreferred: In-person consultation, Chennai")
+                  )}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-8 inline-flex items-center gap-3 bg-primary text-primary-foreground px-8 py-4 text-sm hover:bg-slate-700 transition-colors duration-300"

@@ -32,6 +32,18 @@ export default function Philosophy() {
                 maintenance. My clinic location may evolve. My patient-care system
                 does not.
               </p>
+              <div className="mt-10 relative">
+                <div className="absolute top-4 -left-4 w-full h-full border border-slate-600/50 pointer-events-none" />
+                <img
+                  data-testid="philosophy-training-photo"
+                  src="https://customer-assets-7cd3h4nn.emergentagent.net/job_specialist-smile-1/artifacts/mu4d9h9a_photo_2025-04-12_19-46-01.jpg"
+                  alt="Dr. Yogesh Kumar M during hands-on advanced surgical training"
+                  className="relative w-full max-w-md h-64 lg:h-72 object-cover"
+                />
+                <p className="mt-4 font-mono text-[10px] tracking-[0.22em] uppercase text-slate-400">
+                  Continual hands-on surgical training · advanced implant protocols
+                </p>
+              </div>
             </Reveal>
           </div>
         </div>

@@ -3,34 +3,44 @@ import { scrollToId } from "@/lib/site";
 
 const cases = [
   {
-    meta: ["Case 01", "Full-Arch Implant Rehabilitation", "Patient in their late 60s"],
-    title: "Ten years of failing dentures — and a family afraid of surgery",
+    meta: ["Case 01", "Zygomatic + All-on-4 · Dual-Arch", "Patient in their early 60s"],
+    title: "No lower teeth, a failing upper arch — and almost no bone at the back",
     presented:
-      "A retired teacher who had worn complete dentures for a decade. The lower denture no longer stayed in place, eating had become a private struggle, and the family arrived with three conflicting opinions — from \"nothing can be done at this age\" to \"extract everything and place eight implants tomorrow.\"",
+      "A retired gentleman with a completely edentulous lower jaw and an upper arch where the remaining teeth were beyond saving. Imaging showed severe atrophy of the posterior maxilla — the areas where implants would normally go simply had no usable native bone left.",
     thinking:
-      "Age alone is never the deciding factor — bone volume, medical history and what the patient can realistically maintain are. Digital scans and 3D imaging showed enough bone for a fixed full-arch solution on four implants in the lower jaw, avoiding grafting entirely. The daughter sat in on every discussion, because for elderly patients the family carries the decision too.",
+      "Two jaws, two different problems, one coordinated plan. The lower jaw had good anatomy, so a proven All-on-4 protocol was chosen there. The upper jaw could not support conventional posterior implants — instead of months of staged grafting, zygomatic implants anchored in the cheekbone were combined with two conventional implants in the front, giving stable support where the jaw itself offered none.",
     changed:
-      "A fixed lower arch the patient cleans with a simple routine, a relined upper denture that now had something stable to bite against — and a first meal out with the family in years. The plan chosen was the one the patient could maintain, not the largest one possible.",
+      "The compromised upper teeth were removed and both arches rehabilitated with fixed, screw-retained hybrid prostheses — no removable dentures, and no grafting marathon before treatment could even begin.",
   },
   {
-    meta: ["Case 02", "Full-Mouth Rehabilitation", "Patient in their mid 40s"],
-    title: "Teeth worn flat by two decades of silent grinding",
+    meta: ["Case 02", "Implant Rescue & Revision", "Patient in their mid 40s"],
+    title: "A failing upper implant prosthesis — rescued, not restarted",
     presented:
-      "A working professional whose front teeth had shortened year by year until the smile looked aged and chewing was uncomfortable. Previous dentists had patched individual teeth — each repair failing within months, because the underlying bite collapse was never addressed.",
+      "A patient whose lower implant teeth were perfectly stable, but whose upper implant-supported prosthesis had become mobile and was failing. The instinctive answer elsewhere was to remove everything and start again.",
     thinking:
-      "When every tooth is worn, the question is not \"which tooth do we fix\" but \"at what height should the entire bite function?\" The lost vertical dimension was rebuilt provisionally first — the patient lived with a reversible trial of the new bite for weeks before anything permanent was done. Only once function, speech and comfort were proven did definitive ceramic work begin.",
+      "CBCT assessment showed two of the four existing upper implants were fully intact and salvageable — only two had failed. Rather than sacrificing sound implants, the foundation was rebuilt around them: one new conventional implant in the front and two zygomatic implants at the back created a five-implant support system, engineered around the severe posterior bone deficiency.",
     changed:
-      "A full-mouth rehabilitation completed in a planned sequence rather than emergency patches — with a night guard and structured reviews to protect the result from the same forces that caused the damage.",
+      "A new fixed full-arch prosthesis on the upper jaw, designed to bite correctly against the stable lower restoration. Revision surgery preserved what was working — the patient paid, healed and recovered only for what had actually failed.",
   },
   {
-    meta: ["Case 03", "Advanced Implant Rehabilitation", "Patient in their late 50s"],
-    title: "Told 'not enough bone' — three plans, none of them explained",
+    meta: ["Case 03", "Aesthetic Zone · Staged Grafting", "Patient in their mid 20s"],
+    title: "A front tooth lost in a road accident — and a ridge too thin to build on",
     presented:
-      "A patient with long-standing missing upper teeth and severe bone loss, carrying three different treatment plans: one recommending major bone grafting over 18 months, one suggesting removable dentures, and one quoting zygomatic implants with no explanation of what that meant.",
+      "A young professional in the final stages of orthodontic treatment, missing an upper central incisor after a traffic accident. CBCT showed a severe horizontal ridge defect at the site — roughly 2 mm of bone width where an implant would eventually need far more.",
     thinking:
-      "Each option was mapped against the same questions — surgical burden, time to fixed teeth, long-term maintenance, and what could go wrong. For this anatomy, remote-anchorage implants (zygomatic and pterygoid) offered fixed teeth without staged grafting — but the patient needed to understand why, not just be told. The consultation used their own 3D imaging to walk through every alternative.",
+      "Placing an implant into that ridge would have compromised the one thing that matters most in the smile zone: natural-looking gum and bone contour. The plan was staged — autogenous bone from the chin (symphysis graft) to rebuild the ridge width first, and a bonded Maryland bridge as a conservative, aesthetic long-term provisional while the graft matured and orthodontics finished. No healthy adjacent teeth were cut down.",
     changed:
-      "The patient chose graftless full-arch rehabilitation — not because it was suggested loudest, but because they finally understood the trade-offs of all three plans. Understanding came first; the procedure followed.",
+      "A natural-looking bonded tooth within a week of surgery, a ridge rebuilt for a predictable future implant, and a treatment sequence timed precisely around the orthodontic finish — aesthetics never left to chance.",
+  },
+  {
+    meta: ["Case 04", "Full-Mouth Rehab · Sinus Lift", "Patient in their mid 50s"],
+    title: "Fifteen years of missing back teeth — and a bite that had quietly collapsed",
+    presented:
+      "A patient who had lost upper back teeth fifteen years earlier, after a jaw fracture. In the years since, the opposing lower teeth had over-erupted into the empty space, the remaining teeth had worn down, and there was no longer room to place anything — with only 4 mm of native bone below the sinus.",
+    thinking:
+      "The missing teeth were the visible problem; the lost inter-arch space was the real one. The sequence mattered: first regain the space — splint therapy, root canal treatment and correction of the over-erupted teeth — then a direct sinus lift to rebuild bone height with simultaneous implant placement, and only after healing, the prosthetic phase.",
+    changed:
+      "A full-mouth rehabilitation with implant-supported teeth where bone had been missing for fifteen years, a corrected bite plane, and chewing function the patient had stopped expecting to get back.",
   },
 ];
 
@@ -48,8 +58,9 @@ export default function CaseStories() {
             How complex cases are <em className="text-slate-500">actually thought through</em>
           </h2>
           <p className="mt-8 text-muted-foreground leading-relaxed">
-            Not before-and-after photographs — the reasoning behind real decisions.
-            Details are altered to protect patient identity; the clinical thinking is not.
+            Real cases from practice — not before-and-after marketing. Names and
+            identifying details are changed to protect patient privacy; the
+            clinical thinking is not.
           </p>
         </Reveal>
 

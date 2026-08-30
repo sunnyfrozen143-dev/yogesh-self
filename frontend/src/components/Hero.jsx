@@ -108,9 +108,9 @@ export default function Hero() {
             <motion.div style={{ y: imgY }} className="relative clipped-frame bg-slate-200">
               <img
                 data-testid="hero-portrait"
-                src="https://images.pexels.com/photos/19438563/pexels-photo-19438563.jpeg?auto=compress&cs=tinysrgb&w=1000"
-                alt="Dr. Yogesh Kumar — Prosthodontist & Implantologist"
-                className="w-full h-[420px] lg:h-[540px] object-cover object-top grayscale-[20%]"
+                src="https://customer-assets-7cd3h4nn.emergentagent.net/job_specialist-smile-1/artifacts/wh5zb4y1_photo_2025-11-29_09-57-01.jpg"
+                alt="Dr. Yogesh Kumar M — Prosthodontist & Implantologist"
+                className="w-full h-[420px] lg:h-[540px] object-cover object-top"
               />
             </motion.div>
             <p className="mt-5 font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground">

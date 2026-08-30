@@ -1,0 +1,25 @@
+{
+  "summary": "Frontend-only regression + new-feature testing for Dr. Yogesh Kumar site (iteration 2). Verified: Learn hub (5 article rows, correct slugs, navbar link scrolls to section), Article page (title, sections, disclaimer, CTA panel with consult+WhatsApp links, 3 related-article links + navigation between articles, back-link to /#learn with scroll, article header consult-btn to /#consult with scroll), direct URL load for /learn/zygomatic-implants-no-bone, unknown slug /learn/xyz redirects to landing, Case Stories renders exactly 4 real-case articles (case-story-1..4), Hero portrait (wh5zb4y1) and Philosophy training photo (mu4d9h9a) load with valid naturalWidth, FAQ accordion opens, consult form renders (NOT submitted), /admin route loads (Enquiries Dashboard unlock screen). 16/17 functional checks pass; the one 'fail' was a substring assertion on Reveal-hidden text (count=4 verified correct).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": []
+  },
+  "test_report_links": ["/app/test_reports/iteration_2.json", "/app/backend/tests/backend_test.py (unchanged from iter 1)"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "Landing hash-scroll useEffect uses a 150ms setTimeout — works reliably because Lenis is mounted, but consider re-running on route change (currently only depends on hash) if a user navigates from /learn/:slug to /#learn twice in a row with the same hash it may not re-scroll. Verified once per flow — OK for now.",
+    "Article.jsx unknown-slug uses <Navigate to='/' replace> — correct. Article page useEffect resets document.title on unmount — good.",
+    "articles.js is a static module; consider memoizing getArticle for large lists (not needed at 5 entries).",
+    "Admin page accepts key via input only (not query-string) — /admin?key=... does not auto-unlock. Not a bug per spec, just a note."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "not tested (per request)", "frontend": "100% (all 17 checks; 1 assertion was a test-script substring check on Reveal-hidden content — functional count verified 4/4 cases)"},
+  "test_credentials": "Admin key: yk-admin-9043432286 (must be typed in unlock form input, not query param)",
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": false,
+  "context_for_next_testing_agent": "All Learn/Article flows verified end-to-end on prod URL. Navigation: landing → learn article → related article → back to /#learn works. Article header 'Request a Consultation' correctly routes to /#consult and Landing hash-scroll useEffect brings the consult form into view. Unknown slug redirect works. Hero portrait (wh5zb4y1) and Philosophy training photo (mu4d9h9a) both load (1278x839 and 1280x960 natural). 4 case stories render with new de-identified real-case content. Consult form was NOT submitted (per instructions — sends real emails).",
+  "rca of the issue": "N/A — no functional issues detected."
+}

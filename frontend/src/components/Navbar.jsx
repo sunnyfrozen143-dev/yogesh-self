@@ -5,6 +5,7 @@ const links = [
   ["Philosophy", "philosophy"],
   ["Expertise", "expertise"],
   ["Case Stories", "cases"],
+  ["Learn", "learn"],
   ["FAQ", "faq"],
 ];
 

@@ -38,16 +38,22 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 - React Router added: "/" landing, "/admin" dashboard. Deleted orphaned Facility.jsx.
 - Testing agent iteration_1: 100% backend + frontend pass; test data cleaned.
 
+## Implemented (2026-06 fork session, part 2)
+- Real photos: hero portrait (wh5zb4y1 asset) + hands-on surgical training photo in Philosophy sticky column (mu4d9h9a asset). Stock hero photo removed.
+- Case Stories rewritten with 4 REAL de-identified cases from Dr. Yogesh's uploaded case-profile PPTX: (1) zygomatic + All-on-4 dual-arch atrophy, (2) maxillary implant rescue/revision with zygoma, (3) aesthetic zone symphysis grafting + Maryland bridge (26M RTA), (4) full-mouth rehab with direct sinus lift.
+- Patient Education hub: Learn section on landing (id="learn") + 5 SEO articles at /learn/:slug (src/lib/articles.js): dental-implants-explained, full-arch-implants-all-on-4, zygomatic-implants-no-bone, worn-teeth-full-mouth-rehabilitation, loose-dentures-options. Article pages (src/pages/Article.jsx) with document.title SEO, CTA panel, related articles, unknown-slug redirect. Landing hash-scroll (/#consult, /#learn) added.
+- PPTX source saved insights: obturator, smile design veneers, TMD, guided surgery cases available for future case stories/articles (file was 106MB, not stored in repo).
+- Testing agent iteration_2: 100% frontend pass.
+
 ## Backlog
-- P0: Replace hero stock photos with real photos of Dr. Yogesh (user skipped upload — waiting on photos)
 - P0: Confirm alert email address (currently assumed dryogeshkumar@gmail.com in backend/.env OWNER_EMAIL)
-- P2: SEO: blog/education articles per content pillars, OG images, sitemap
-- P2: "Who Should Consult Me?" SEO landing sub-pages
+- P2: SEO: OG images, sitemap, meta descriptions per article
+- P2: More case stories/articles from remaining PPTX cases (obturator/maxillofacial prosthesis, smile design veneers, guided full-arch, implant-supported overdenture)
 - P2: Google Business Profile + Search Console; custom domain on Dr. Yogesh's name
 - P2: Scheduled specialist consultation days section (Tamil Nadu locations)
 - P2: Analytics dashboard (enquiry → consultation → acceptance funnel); pagination on GET /api/consultations if leads exceed 500
 
 ## Next Tasks
-1. Get real portrait photos from Dr. Yogesh and swap them in
-2. Confirm correct alert email address (OWNER_EMAIL in backend/.env)
+1. Confirm correct alert email address (OWNER_EMAIL in backend/.env)
+2. Add SEO meta/OG tags + sitemap for the article pages
 3. Optional: WhatsApp notification to doctor in addition to email

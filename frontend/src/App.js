@@ -1,5 +1,6 @@
 import "@/App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { ReactLenis } from "lenis/react";
 import "lenis/dist/lenis.css";
 import { MotionConfig } from "framer-motion";
@@ -11,13 +12,26 @@ import WhoShouldConsult from "@/components/WhoShouldConsult";
 import Philosophy from "@/components/Philosophy";
 import Categories from "@/components/Categories";
 import CaseStories from "@/components/CaseStories";
+import Learn from "@/components/Learn";
 import ConsultForm from "@/components/ConsultForm";
 import Faq from "@/components/Faq";
 import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import Admin from "@/pages/Admin";
+import Article from "@/pages/Article";
 
 function Landing() {
+  const { hash } = useLocation();
+
+  useEffect(() => {
+    if (hash) {
+      const el = document.getElementById(hash.slice(1));
+      if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth" }), 150);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [hash]);
+
   return (
     <ReactLenis root options={{ lerp: 0.09, duration: 1.1 }}>
       <MotionConfig reducedMotion="user">
@@ -31,6 +45,7 @@ function Landing() {
             <Philosophy />
             <Categories />
             <CaseStories />
+            <Learn />
             <ConsultForm />
             <Faq />
           </main>
@@ -47,6 +62,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/learn/:slug" element={<Article />} />
         <Route path="/admin" element={<Admin />} />
       </Routes>
     </BrowserRouter>

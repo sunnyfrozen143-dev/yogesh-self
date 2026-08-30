@@ -1,0 +1,78 @@
+export const articles = [
+  {
+    slug: "dental-implants-explained",
+    category: "Implants · Basics",
+    minutes: 5,
+    title: "Dental Implants, Explained Simply",
+    dek: "What an implant actually is, how it bonds with your bone, and what the journey from consultation to final tooth really looks like.",
+    sections: [
+      ["What is a dental implant?", "A dental implant is a small titanium post placed into the jawbone to act as an artificial tooth root. Over a few months, living bone grows onto its surface and locks it in place — a biological process called osseointegration. Once integrated, the implant can support a crown, a bridge, or even a full arch of fixed teeth."],
+      ["Why implants instead of a bridge or denture?", "A conventional bridge requires cutting down the healthy teeth on either side of a gap. A removable denture rests on the gums and gradually accelerates bone loss underneath it. An implant replaces the missing root itself — it preserves the neighbouring teeth, stimulates the bone, and behaves closest to a natural tooth when you chew and speak."],
+      ["Am I a candidate?", "Most healthy adults are. What matters is not age but three things: the volume and quality of bone at the site, your general health (well-controlled diabetes is usually fine; uncontrolled disease and heavy smoking raise risks), and your ability to maintain hygiene around the implant. A CBCT scan — a 3D X-ray — answers the bone question precisely, which is why no honest implant plan is made without one."],
+      ["What does the process involve?", "First, a specialist consultation with records: clinical examination, digital scans, photographs and CBCT where indicated. Placement itself is usually a short procedure under local anaesthesia — most patients compare it to having a filling done. The implant then heals for roughly two to four months while bone integrates. Finally, the crown or bridge is fabricated and fitted. In selected cases, a provisional tooth can be attached much earlier."],
+      ["Do implants hurt? Do they fail?", "The placement is done under anaesthesia and post-operative discomfort is typically managed with ordinary painkillers for a few days. Success rates in healthy patients are consistently above 95% in published literature — but the honest answer is that success is planned, not promised. Correct positioning, adequate bone, controlled bite forces and maintenance are what separate implants that last decades from implants that fail."],
+      ["How long do they last?", "With good hygiene and regular reviews, an implant can serve for decades. The implant does not decay — but the gum and bone around it still need care, exactly like natural teeth. This is why a structured maintenance pathway (reviews at 1, 3 and 6 months, then annually) is part of the treatment, not an optional extra."],
+    ],
+  },
+  {
+    slug: "full-arch-implants-all-on-4",
+    category: "Implants · Full-Arch",
+    minutes: 6,
+    title: "All-on-4 and All-on-6: What Full-Arch Implants Really Involve",
+    dek: "Fixed teeth for a whole jaw on four to six implants — who it's for, what happens on surgery day, and what nobody tells you about maintenance.",
+    sections: [
+      ["The idea in one paragraph", "When most or all teeth in a jaw are failing or already gone, replacing them one implant per tooth is neither necessary nor sensible. Full-arch rehabilitation places four to six implants at engineered positions and angles, and fixes a complete arch of teeth onto them. The result is not a removable denture — it stays in your mouth, and you chew with it like teeth."],
+      ["Who is this actually for?", "Patients with multiple failing teeth, long-standing loose dentures, or severe gum disease where saving individual teeth has become a losing battle. It is also the standard answer for people who have worn complete dentures for years and can no longer keep the lower one in place. Age is rarely the barrier patients think it is — the deciding factors are bone, health and maintainability."],
+      ["What happens on surgery day?", "In many cases, failing teeth are removed, implants are placed, and a provisional set of teeth is attached — in one planned surgical appointment. This is called immediate loading, and it is only safe when implant stability measured during surgery permits it. If stability is insufficient, a well-made interim prosthesis maintains appearance while implants heal. Deciding this honestly, during surgery, is part of specialist judgment."],
+      ["Provisional first, final later — why?", "The first set of fixed teeth is deliberately provisional. Over the following months you live with them, and they reveal everything: how your bite settles, how your speech adapts, how your smile line looks. The definitive prosthesis — typically a screw-retained hybrid — is then made with all of that information built in. Rushing to a final prosthesis on day one skips the most valuable diagnostic period in the entire treatment."],
+      ["All-on-4 versus All-on-6", "The difference is the number and distribution of implants, and the decision is anatomical, not promotional. Four implants with the back pair tilted can avoid grafting in a resorbed jaw; six implants spread the load further when bone quality and volume allow. Neither is universally 'better' — a plan should be able to explain why your anatomy points to one or the other."],
+      ["The maintenance nobody advertises", "A fixed full-arch prosthesis must be cleaned underneath daily — with water flossers, interdental brushes or superfloss — and professionally reviewed on a schedule. Expect the prosthesis to need servicing over its lifetime: bite adjustments, and eventually replacement of worn teeth. Patients who are told this before treatment keep their results; patients who discover it afterwards resent it."],
+    ],
+  },
+  {
+    slug: "zygomatic-implants-no-bone",
+    category: "Implants · Advanced",
+    minutes: 5,
+    title: "Told You Don't Have Enough Bone? Zygomatic and Pterygoid Implants",
+    dek: "Severe upper-jaw bone loss doesn't always mean months of grafting — remote-anchorage implants take support from beyond the jaw itself.",
+    sections: [
+      ["Why the upper jaw loses bone", "After teeth are lost, the upper jaw resorbs from two directions at once: the ridge shrinks, and the maxillary sinus above it expands downward. After years of missing teeth or denture wear, some patients are left with only a few millimetres of usable bone — too little for conventional implants."],
+      ["The two classical answers", "Option one is rebuilding the bone: sinus lifts and grafting procedures, staged over months, before implants can even be placed. These are proven, and in the right case they remain the correct choice. Option two used to be resignation: a removable denture, accepted as final. Remote-anchorage implants added a third path."],
+      ["What zygomatic implants are", "A zygomatic implant is a long implant that bypasses the deficient jaw entirely and anchors in the zygomatic bone — the cheekbone — which does not resorb after tooth loss. Pterygoid implants do the same at the back of the jaw, engaging dense bone behind the sinus. Anchored this way, a full arch of fixed teeth can be supported even in a severely atrophic maxilla, frequently with teeth attached immediately."],
+      ["Graft first, or go graftless?", "This is a genuine planning decision, not a slogan. Grafting rebuilds anatomy but adds surgeries, healing time and its own failure risks; remote anchorage avoids the grafting timeline but is a demanding surgical technique that belongs in trained, experienced hands with proper 3D planning. A patient deserves to hear both options mapped against the same questions — surgical burden, time to fixed teeth, cost of failure, long-term maintenance — and then decide."],
+      ["Rescue cases", "Remote anchorage is also how failing implant work gets rescued. When an existing upper implant prosthesis fails and the bone that once supported it is gone, zygomatic implants can rebuild the foundation — often preserving the intact implants that remain, instead of starting from zero."],
+      ["The bottom line", "'Not enough bone' is the beginning of a planning conversation, not the end of your options. If you have been told nothing can be done, or handed three conflicting plans, a specialist second opinion with your CBCT on the screen is the rational next step."],
+    ],
+  },
+  {
+    slug: "worn-teeth-full-mouth-rehabilitation",
+    category: "Rehabilitation",
+    minutes: 5,
+    title: "Severely Worn Teeth: How Full-Mouth Rehabilitation Actually Works",
+    dek: "When every tooth has shortened and the bite has collapsed, patching one tooth at a time fails. Here's how the whole system gets rebuilt.",
+    sections: [
+      ["How teeth wear down silently", "Grinding at night, acid erosion, an unbalanced bite, missing back teeth overloading the front — usually a combination. Enamel loss is slow enough that patients adapt without noticing, until the face looks shorter, the front teeth are flat and dark-edged, chewing is inefficient, and fillings keep fracturing."],
+      ["Why single-tooth repairs keep failing", "When wear is generalised, the problem is no longer any individual tooth — it is the height and scheme of the entire bite. A crown built into a collapsed bite inherits the same destructive forces that caused the wear. This is why the honest question is not 'which tooth do we fix?' but 'at what height, and in what scheme, should the whole system function?'"],
+      ["Rebuilding the bite — on trial first", "The lost vertical dimension is rebuilt provisionally and reversibly first: with a splint, composite build-ups or provisional restorations. You live with the proposed new bite for weeks — chewing, speaking, sleeping in it. Only when comfort, function and appearance are proven does anything permanent begin. Nothing irreversible should happen at a bite height you have never tested."],
+      ["What the definitive phase looks like", "With the trial validated, the arches are restored in a planned sequence — ceramic onlays, crowns or veneers as each tooth requires, sometimes implants where teeth are missing. Digital scans, photographs and mounted records keep the new bite consistent from the first tooth to the last. A full-mouth rehabilitation is a sequenced project, not a long appointment."],
+      ["Protecting the result", "The forces that destroyed the first set of teeth will happily destroy the second. A night guard, a corrected bite scheme, and scheduled reviews are part of the treatment. Well-maintained rehabilitations serve for many years — unprotected ones repeat history."],
+      ["When to seek a specialist opinion", "If your front teeth have visibly shortened, your fillings and crowns keep breaking, or you have been offered a long list of individual crowns without anyone discussing your bite as a whole — that is precisely the situation full-mouth rehabilitation planning exists for."],
+    ],
+  },
+  {
+    slug: "loose-dentures-options",
+    category: "Dentures & Implants",
+    minutes: 4,
+    title: "Loose Dentures: Your Real Options After Years of Denture Wear",
+    dek: "The lower denture that won't stay put is a bone problem, not a denture problem. Here is the honest menu of solutions, from simplest to fixed teeth.",
+    sections: [
+      ["Why dentures loosen over the years", "A denture rests on gum and bone — and bone that no longer holds tooth roots slowly melts away, year after year. The ridge that once gripped your denture flattens, and no adhesive can compensate indefinitely. The lower jaw suffers most: less surface area, a moving tongue, and a fraction of the stability of the upper."],
+      ["Option 1: A better denture", "Sometimes the existing denture is simply old, under-extended or worn flat, and a properly made new one — or a reline of a good one — restores acceptable function. This is the simplest and least invasive answer, and it is worth doing right. But it cannot stop the underlying bone loss."],
+      ["Option 2: Implant-supported overdenture", "Two to four implants with attachments let a removable denture snap firmly into place. It stays put while eating and speaking, yet comes out for cleaning. For many long-term denture wearers — especially for the lower jaw — this is the biggest quality-of-life jump per implant invested, and implants also slow the bone loss where they are placed."],
+      ["Option 3: Fixed teeth on implants", "A full-arch fixed prosthesis on four to six implants does not come out at all. It is the closest return to natural teeth — strongest chewing, no palate coverage in the upper jaw, no movement. It demands more bone, more investment, and disciplined daily hygiene underneath it. In severely resorbed upper jaws, zygomatic implants can make even this possible."],
+      ["How to choose — especially for an elderly parent", "The right answer is the one the patient can maintain, afford and physically manage — not the largest one available. For elderly patients, involve the family in the consultation, ask about cleaning ability and medical status honestly, and be suspicious of any plan proposed without a CBCT and a maintenance conversation. Understanding the options is the decision; the procedure is just the execution."],
+    ],
+  },
+];
+
+export const getArticle = (slug) => articles.find((a) => a.slug === slug);

@@ -51,6 +51,13 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 - Consultation mode flow: consult form now has "Preferred first consultation" selector — In-person (Chennai) or Online screening first (video after booking, for outstation patients). Backend ConsultationCreate.mode field (validated enum, 422 on invalid), shown in admin dashboard + alert email. Copy updated in form sidebar (4 steps) and FAQ ("Where will my consultation take place?").
 - Self-tested: sitemap/robots 200, OG tags served, POST with mode=online_screening + email fired, invalid mode 422, mode selector + 7-case expand verified via screenshot.
 
+## Implemented (2026-06 fork session, part 4)
+- Google structured data: Dentist JSON-LD schema in index.html (name, specialty, Chennai address, telephone, services, knowsAbout) — validated as parseable JSON.
+- Video screening slot picker: when "Online screening first" is selected, form reveals date chips (next 10 days, Sundays excluded) + 6 time slots (11:00 AM–8:00 PM, Mon–Sat default per user skip). Optional fields preferred_date/preferred_time; cleared when mode=in_person. Stored in DB, shown in admin dashboard row, included in alert email as "Requested slot".
+- Consultation Days section: NOT built — user confirmed consultations are Chennai-only in-person + online (existing form/FAQ copy already states this).
+- Custom-domain alert email: NOT possible yet — user wants an inbox on the website domain; requires purchasing a custom domain + email hosting (e.g., Zoho Mail/Google Workspace). Alerts remain to dryogeshkumar@gmail.com until then.
+- Self-tested: JSON-LD parse, POST with slot fields + email fired, slot picker UI screenshot (10 date chips, time selection).
+
 ## Backlog
 - P0: Confirm alert email address (currently assumed dryogeshkumar@gmail.com in backend/.env OWNER_EMAIL)
 - P2: SEO: OG images, sitemap, meta descriptions per article

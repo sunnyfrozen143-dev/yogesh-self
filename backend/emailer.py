@@ -115,6 +115,9 @@ async def notify_new_consultation(doc: dict) -> None:
         return
     try:
         subject = f"New consultation request — {doc['name']} ({doc['location']})"
+        slot = ""
+        if doc.get("mode") == "online_screening" and (doc.get("preferred_date") or doc.get("preferred_time")):
+            slot = _row("Requested slot", f"{doc.get('preferred_date') or 'Any day'} · {doc.get('preferred_time') or 'Any time'}")
         html = (
             '<table role="presentation" width="100%" style="max-width:560px;font-family:Arial,sans-serif;'
             'border:1px solid #e2e8f0;border-collapse:collapse">'
@@ -127,6 +130,7 @@ async def notify_new_consultation(doc: dict) -> None:
             + _row("Chief concern", doc["chief_complaint"])
             + _row("Goal", doc.get("goal") or "—")
             + _row("Preferred mode", "Online screening (video)" if doc.get("mode") == "online_screening" else "In-person · Chennai")
+            + slot
             + _row("Received", doc["created_at"])
             + '<tr><td colspan="2" style="padding:16px;font-size:12px;color:#888">'
             f'Sent by {escape(EMAIL_FROM_NAME)}. Open your enquiries dashboard (/admin on your website) '

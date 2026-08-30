@@ -13,11 +13,31 @@ const steps = [
   "You meet Dr. Yogesh in Chennai for your specialist consultation",
 ];
 
+const TIME_SLOTS = ["11:00 AM", "12:30 PM", "3:00 PM", "5:00 PM", "6:30 PM", "8:00 PM"];
+
+const nextDates = () => {
+  const out = [];
+  const d = new Date();
+  d.setDate(d.getDate() + 1);
+  while (out.length < 10) {
+    if (d.getDay() !== 0) {
+      out.push({
+        value: d.toISOString().slice(0, 10),
+        day: d.toLocaleDateString("en-IN", { weekday: "short" }),
+        date: d.toLocaleDateString("en-IN", { day: "numeric", month: "short" }),
+      });
+    }
+    d.setDate(d.getDate() + 1);
+  }
+  return out;
+};
+
 const inputCls =
   "w-full bg-white border border-input px-4 py-3.5 text-sm placeholder:text-muted-foreground/70 focus:outline-none focus:ring-2 focus:ring-ring/30 focus:border-foreground transition-colors duration-300";
 
 export default function ConsultForm() {
-  const [form, setForm] = useState({ name: "", age: "", location: "", phone: "", chief_complaint: "", goal: "", mode: "in_person" });
+  const [form, setForm] = useState({ name: "", age: "", location: "", phone: "", chief_complaint: "", goal: "", mode: "in_person", preferred_date: "", preferred_time: "" });
+  const [dates] = useState(nextDates);
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState("");
@@ -29,7 +49,12 @@ export default function ConsultForm() {
     setBusy(true);
     setError("");
     try {
-      await axios.post(`${API}/consultations`, { ...form, age: parseInt(form.age, 10) });
+      const payload = { ...form, age: parseInt(form.age, 10) };
+      if (payload.mode !== "online_screening") {
+        payload.preferred_date = "";
+        payload.preferred_time = "";
+      }
+      await axios.post(`${API}/consultations`, payload);
       setDone(true);
     } catch {
       setError("Something went wrong. Please try again or reach us on WhatsApp.");
@@ -162,6 +187,59 @@ export default function ConsultForm() {
                     ))}
                   </div>
                 </div>
+                {form.mode === "online_screening" && (
+                  <div data-testid="consult-slot-picker" className="border border-border bg-white p-5 space-y-5">
+                    <div>
+                      <label className="block font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-3">
+                        Preferred day — video screening
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {dates.map((d) => (
+                          <button
+                            key={d.value}
+                            type="button"
+                            data-testid={`consult-date-${d.value}`}
+                            onClick={() => setForm({ ...form, preferred_date: form.preferred_date === d.value ? "" : d.value })}
+                            className={`px-3 py-2 border text-center transition-colors duration-200 ${
+                              form.preferred_date === d.value
+                                ? "border-foreground bg-primary text-primary-foreground"
+                                : "border-input bg-white hover:border-foreground/50"
+                            }`}
+                          >
+                            <span className="block font-mono text-[9px] uppercase tracking-widest">{d.day}</span>
+                            <span className="block text-sm mt-0.5">{d.date}</span>
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <div>
+                      <label className="block font-mono text-[10px] tracking-[0.2em] uppercase text-muted-foreground mb-3">
+                        Preferred time
+                      </label>
+                      <div className="flex flex-wrap gap-2">
+                        {TIME_SLOTS.map((t) => (
+                          <button
+                            key={t}
+                            type="button"
+                            data-testid={`consult-time-${t.replace(/[\s:]/g, "-")}`}
+                            onClick={() => setForm({ ...form, preferred_time: form.preferred_time === t ? "" : t })}
+                            className={`px-4 py-2 border text-sm transition-colors duration-200 ${
+                              form.preferred_time === t
+                                ? "border-foreground bg-primary text-primary-foreground"
+                                : "border-input bg-white hover:border-foreground/50"
+                            }`}
+                          >
+                            {t}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed">
+                      This is your requested slot — the coordinator confirms the exact
+                      time on the call. Sundays are not available.
+                    </p>
+                  </div>
+                )}
                 {error && <p data-testid="consult-error" className="text-sm text-red-700">{error}</p>}
                 <button
                   data-testid="consult-submit-btn"

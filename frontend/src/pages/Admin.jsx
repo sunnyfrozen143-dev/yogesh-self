@@ -207,6 +207,9 @@ export default function Admin() {
                   </p>
                   <p className="mt-1 font-mono text-[10px] tracking-[0.15em] uppercase text-slate-500">
                     {r.mode === "online_screening" ? "Online screening requested" : "In-person · Chennai"}
+                    {r.mode === "online_screening" && (r.preferred_date || r.preferred_time)
+                      ? ` · ${r.preferred_date || "any day"} ${r.preferred_time || ""}`.trimEnd()
+                      : ""}
                   </p>
                   <p className="mt-2 font-mono text-xs text-muted-foreground">{fmtDate(r.created_at)}</p>
                 </div>

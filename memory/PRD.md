@@ -30,18 +30,24 @@ Build a personal brand website for Dr. Yogesh Kumar, MDS Prosthodontist & Implan
 - WhatsApp deep links with pre-filled messages (+91 90434 32286)
 - Page title/meta updated
 
+## Implemented (2026-06 fork session)
+- Enquiry email alerts: every new consultation triggers an email to OWNER_EMAIL (dryogeshkumar@gmail.com — still to confirm) via Emergent managed email (backend/emailer.py, background task, guardrail gate, from_name "Dr. Yogesh Kumar"). Verified live send (202 + log).
+- Enquiries Dashboard at /admin (frontend/src/pages/Admin.jsx): key-locked (ADMIN_KEY, sessionStorage), stat cards, status filters (new/contacted/consulted/closed), search, per-lead WhatsApp link, status select → PATCH /api/consultations/{id}, refresh, lock.
+- PATCH /api/consultations/{cid} endpoint (admin-guarded, status enum validated). Auth now fails closed if ADMIN_KEY unset.
+- Case Stories section (components/CaseStories.jsx, id="cases"): 3 de-identified editorial case narratives (presented/thinking/changed) + navbar link + CTA to consult form.
+- React Router added: "/" landing, "/admin" dashboard. Deleted orphaned Facility.jsx.
+- Testing agent iteration_1: 100% backend + frontend pass; test data cleaned.
+
 ## Backlog
-- P0: Replace hero/facility stock photos with real photos of Dr. Yogesh and The Dental Avenue
-- P1: Email/WhatsApp notification to Dr. Yogesh when a new consultation request arrives (Resend integration)
-- P1: Simple admin page to view consultation requests (currently API-only with admin key)
-- P1: Case library / de-identified case stories section
+- P0: Replace hero stock photos with real photos of Dr. Yogesh (user skipped upload — waiting on photos)
+- P0: Confirm alert email address (currently assumed dryogeshkumar@gmail.com in backend/.env OWNER_EMAIL)
 - P2: SEO: blog/education articles per content pillars, OG images, sitemap
-- P2: Google Business Profile + search Console setup; custom domain on Dr. Yogesh's name
-- P2: Scheduled specialist consultation days section (Tamil Nadu locations) — Month 7–9 roadmap
-- P2: Analytics dashboard (enquiry → consultation → acceptance funnel)
+- P2: "Who Should Consult Me?" SEO landing sub-pages
+- P2: Google Business Profile + Search Console; custom domain on Dr. Yogesh's name
+- P2: Scheduled specialist consultation days section (Tamil Nadu locations)
+- P2: Analytics dashboard (enquiry → consultation → acceptance funnel); pagination on GET /api/consultations if leads exceed 500
 
 ## Next Tasks
-1. Get real portrait + facility photos from Dr. Yogesh and swap them in
-2. Add enquiry notification (Resend email) so no request is missed
-3. Build /admin enquiries view
-4. Confirm correct email address (currently assumed dryogeshkumar@gmail.com)
+1. Get real portrait photos from Dr. Yogesh and swap them in
+2. Confirm correct alert email address (OWNER_EMAIL in backend/.env)
+3. Optional: WhatsApp notification to doctor in addition to email

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter, Request
+from fastapi import FastAPI, APIRouter, Request, BackgroundTasks
 from fastapi.responses import StreamingResponse, JSONResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
@@ -43,18 +43,38 @@ async def root():
 
 
 @api_router.post("/consultations")
-async def create_consultation(input: ConsultationCreate):
+async def create_consultation(input: ConsultationCreate, background_tasks: BackgroundTasks):
     doc = input.model_dump()
     doc["id"] = str(uuid.uuid4())
     doc["status"] = "new"
     doc["created_at"] = datetime.now(timezone.utc).isoformat()
     await db.consultations.insert_one(doc)
+    from emailer import notify_new_consultation
+    background_tasks.add_task(notify_new_consultation, {k: v for k, v in doc.items() if k != "_id"})
     return {"ok": True, "id": doc["id"]}
+
+
+class StatusUpdate(BaseModel):
+    status: str = Field(pattern="^(new|contacted|consulted|closed)$")
+
+
+@api_router.patch("/consultations/{cid}")
+async def update_consultation_status(cid: str, input: StatusUpdate, request: Request):
+    if not _admin_ok(request):
+        return JSONResponse(status_code=401, content={"detail": "unauthorized"})
+    res = await db.consultations.update_one({"id": cid}, {"$set": {"status": input.status}})
+    if res.matched_count == 0:
+        return JSONResponse(status_code=404, content={"detail": "not found"})
+    return {"ok": True}
+
+
+def _admin_ok(request: Request) -> bool:
+    return bool(ADMIN_KEY) and request.headers.get("x-admin-key") == ADMIN_KEY
 
 
 @api_router.get("/consultations")
 async def list_consultations(request: Request):
-    if ADMIN_KEY and request.headers.get("x-admin-key") != ADMIN_KEY:
+    if not _admin_ok(request):
         return JSONResponse(status_code=401, content={"detail": "unauthorized"})
     docs = await db.consultations.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
     return {"consultations": docs}

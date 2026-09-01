@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, MessageCircle } from "lucide-react";
 import { waLink, scrollToId } from "@/lib/site";
+import { useLang } from "@/lib/LanguageContext";
 
 const MaskedLine = ({ children, delay = 0, className = "" }) => (
   <span className="block overflow-hidden pb-1">
@@ -16,6 +17,8 @@ const MaskedLine = ({ children, delay = 0, className = "" }) => (
 );
 
 export default function Hero() {
+  const { lang, t } = useLang();
+  const h = t.hero;
   const { scrollY } = useScroll();
   const imgY = useTransform(scrollY, [0, 700], [0, 90]);
   const textY = useTransform(scrollY, [0, 700], [0, -40]);
@@ -33,18 +36,19 @@ export default function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="font-mono text-xs tracking-[0.25em] uppercase text-muted-foreground mb-8"
           >
-            Prosthodontist & Implantologist — MDS · Chennai
+            {h.overline}
           </motion.p>
 
           <h1 className="font-serif tracking-tight text-foreground">
-            <MaskedLine delay={0.35} className="text-5xl sm:text-6xl lg:text-7xl leading-[1.02]">
-              Dr. Yogesh Kumar
+            <MaskedLine key={`n-${lang}`} delay={0.35} className="text-5xl sm:text-6xl lg:text-7xl leading-[1.05]">
+              {h.name}
             </MaskedLine>
             <MaskedLine
+              key={`s-${lang}`}
               delay={0.55}
-              className="text-3xl sm:text-4xl lg:text-5xl italic text-slate-600 mt-3"
+              className="text-3xl sm:text-4xl lg:text-5xl italic text-slate-600 mt-3 leading-[1.2]"
             >
-              Complex Oral Rehabilitation
+              {h.subtitle}
             </MaskedLine>
           </h1>
 
@@ -54,8 +58,7 @@ export default function Hero() {
             transition={{ duration: 0.9, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="mt-10 max-w-xl text-base md:text-lg text-muted-foreground leading-relaxed text-balance"
           >
-            When your dental problem is complex, the first step isn't choosing a
-            procedure. It's understanding the problem.
+            {h.para}
           </motion.p>
 
           <motion.div
@@ -69,7 +72,7 @@ export default function Hero() {
               onClick={() => scrollToId("consult")}
               className="group bg-primary text-primary-foreground px-8 py-4 text-sm tracking-wide flex items-center gap-3 hover:bg-slate-700 transition-colors duration-300"
             >
-              Request a Consultation
+              {h.cta}
               <ArrowDown className="w-4 h-4 group-hover:translate-y-1 transition-transform duration-300" />
             </button>
             <a
@@ -80,7 +83,7 @@ export default function Hero() {
               className="border border-foreground/25 px-8 py-4 text-sm tracking-wide flex items-center gap-3 hover:border-foreground hover:bg-foreground hover:text-background transition-colors duration-300"
             >
               <MessageCircle className="w-4 h-4" />
-              WhatsApp
+              {h.whatsapp}
             </a>
           </motion.div>
 
@@ -91,8 +94,7 @@ export default function Hero() {
             data-testid="hero-scope-line"
             className="mt-12 font-mono text-[11px] tracking-[0.18em] uppercase text-muted-foreground leading-loose"
           >
-            Full-mouth rehabilitation · Full-arch implants · Advanced implant
-            solutions · Smile rehabilitation
+            {h.scope}
           </motion.p>
         </motion.div>
 
@@ -114,7 +116,7 @@ export default function Hero() {
               />
             </motion.div>
             <p className="mt-5 font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
-              Specialist-led care · TRIOS 3 digital workflow
+              {h.imgCaption}
             </p>
           </motion.div>
         </div>

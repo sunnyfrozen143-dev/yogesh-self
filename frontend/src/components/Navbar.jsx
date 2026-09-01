@@ -1,15 +1,11 @@
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, Languages } from "lucide-react";
 import { waLink, scrollToId } from "@/lib/site";
-
-const links = [
-  ["Philosophy", "philosophy"],
-  ["Expertise", "expertise"],
-  ["Case Stories", "cases"],
-  ["Learn", "learn"],
-  ["FAQ", "faq"],
-];
+import { useLang } from "@/lib/LanguageContext";
 
 export default function Navbar() {
+  const { lang, setLang, t } = useLang();
+  const n = t.nav;
+
   return (
     <header
       data-testid="site-navbar"
@@ -21,14 +17,14 @@ export default function Navbar() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           className="text-left"
         >
-          <span className="font-serif text-xl leading-none block">Dr. Yogesh Kumar</span>
+          <span className="font-serif text-xl leading-none block">{t.hero.name}</span>
           <span className="font-mono text-[10px] tracking-[0.22em] uppercase text-muted-foreground">
-            Prosthodontist & Implantologist
+            {n.tagline}
           </span>
         </button>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {links.map(([label, id]) => (
+        <nav className="hidden md:flex items-center gap-7">
+          {n.links.map(([label, id]) => (
             <button
               key={id}
               data-testid={`nav-link-${id}`}
@@ -41,6 +37,15 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
+          <button
+            data-testid="lang-toggle-btn"
+            onClick={() => setLang(lang === "en" ? "ta" : "en")}
+            className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground border border-border px-3 py-1.5 transition-colors duration-300"
+            aria-label="Switch language"
+          >
+            <Languages className="w-3.5 h-3.5" />
+            {n.toggle}
+          </button>
           <a
             data-testid="nav-whatsapp-link"
             href={waLink("Hello Dr. Yogesh, I would like to request a consultation.")}
@@ -49,14 +54,14 @@ export default function Navbar() {
             className="hidden sm:flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300"
           >
             <MessageCircle className="w-4 h-4" />
-            WhatsApp
+            {n.whatsapp}
           </a>
           <button
             data-testid="nav-consultation-btn"
             onClick={() => scrollToId("consult")}
-            className="bg-primary text-primary-foreground text-sm px-5 py-2.5 hover:bg-slate-700 transition-colors duration-300"
+            className="hidden sm:block bg-primary text-primary-foreground text-sm px-5 py-2.5 hover:bg-slate-700 transition-colors duration-300"
           >
-            Request a Consultation
+            {n.cta}
           </button>
         </div>
       </div>

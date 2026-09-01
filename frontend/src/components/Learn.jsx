@@ -2,8 +2,12 @@ import { Link } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, Overline } from "@/components/Reveal";
 import { articles } from "@/lib/articles";
+import { useLang } from "@/lib/LanguageContext";
 
 export default function Learn() {
+  const { t } = useLang();
+  const l = t.learn;
+
   return (
     <section
       data-testid="learn-section"
@@ -13,15 +17,19 @@ export default function Learn() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-16 lg:mb-20 flex flex-wrap items-end justify-between gap-8">
           <div>
-            <Overline>Patient education</Overline>
-            <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.1]">
-              Understand it <em className="text-slate-500">before you decide</em>
+            <Overline>{l.overline}</Overline>
+            <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.15]">
+              {l.title} <em className="text-slate-500">{l.titleEm}</em>
             </h2>
           </div>
-          <p className="max-w-sm text-muted-foreground leading-relaxed">
-            Plain-language guides to the treatments patients ask about most — no
-            jargon, no fear marketing, no prices.
-          </p>
+          <div className="max-w-sm">
+            <p className="text-muted-foreground leading-relaxed">{l.para}</p>
+            {l.note && (
+              <p data-testid="learn-lang-note" className="mt-3 font-mono text-[10px] tracking-[0.18em] uppercase text-slate-400">
+                {l.note}
+              </p>
+            )}
+          </div>
         </Reveal>
 
         <div>
@@ -42,7 +50,7 @@ export default function Learn() {
                   {a.dek}
                 </p>
                 <span className="lg:col-span-1 flex items-center gap-3 lg:justify-end font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                  {a.minutes} min
+                  {a.minutes} {l.min}
                   <ArrowUpRight className="w-5 h-5 text-slate-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
                 </span>
               </Link>

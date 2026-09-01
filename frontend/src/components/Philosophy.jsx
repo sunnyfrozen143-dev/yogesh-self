@@ -1,15 +1,10 @@
-import { Reveal, Overline } from "@/components/Reveal";
-
-const chapters = [
-  ["Understand", "Your concerns, dental history, medical history and expectations — beginning with one question: what would you most like to be able to do again?"],
-  ["Examine", "A careful clinical examination and the appropriate diagnostic records. Nothing automatic — diagnosis determines the records."],
-  ["Analyse", "Digital scans (TRIOS 3), photographs, radiographs and CBCT where indicated — shown to you visually, so you see what I see."],
-  ["Plan", "Suitable treatment options discussed openly: benefits, limitations, risks, time, maintenance and alternatives — in plain language."],
-  ["Treat", "Treatment carried out in an appropriate clinical setting, with the required infrastructure, team and surgical environment."],
-  ["Maintain", "Long-term follow-up and maintenance — 1-month, 3-month, 6-month reviews and annual care. One doctor, one record, one pathway."],
-];
+import { Reveal } from "@/components/Reveal";
+import { useLang } from "@/lib/LanguageContext";
 
 export default function Philosophy() {
+  const { t } = useLang();
+  const p = t.philosophy;
+
   return (
     <section
       data-testid="philosophy-section"
@@ -21,16 +16,13 @@ export default function Philosophy() {
           <div className="lg:sticky lg:top-28">
             <Reveal>
               <p className="font-mono text-xs tracking-[0.25em] uppercase text-slate-400">
-                Treatment philosophy
+                {p.overline}
               </p>
-              <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.1]">
-                How I approach <em className="text-slate-400">complex cases</em>
+              <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.15]">
+                {p.title} <em className="text-slate-400">{p.titleEm}</em>
               </h2>
               <p className="mt-8 text-slate-300 leading-relaxed max-w-md">
-                A complex rehabilitation may span consultation, records, planning,
-                surgery, healing, provisional and final prostheses — and years of
-                maintenance. My clinic location may evolve. My patient-care system
-                does not.
+                {p.para}
               </p>
               <div className="mt-10 relative">
                 <div className="absolute top-4 -left-4 w-full h-full border border-slate-600/50 pointer-events-none" />
@@ -41,14 +33,14 @@ export default function Philosophy() {
                   className="relative w-full max-w-md h-64 lg:h-72 object-cover"
                 />
                 <p className="mt-4 font-mono text-[10px] tracking-[0.22em] uppercase text-slate-400">
-                  Continual hands-on surgical training · advanced implant protocols
+                  {p.training}
                 </p>
               </div>
             </Reveal>
           </div>
         </div>
         <div className="lg:col-span-7">
-          {chapters.map(([title, body], i) => (
+          {p.chapters.map(([title, body], i) => (
             <Reveal key={title} delay={0.05 * i}>
               <div
                 data-testid={`philosophy-chapter-${i + 1}`}

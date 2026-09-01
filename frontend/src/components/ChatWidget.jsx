@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, Loader2 } from "lucide-react";
+import { useLang } from "@/lib/LanguageContext";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-const GREETING =
-  "Hello. I can answer general questions about full-mouth rehabilitation, dental implants, dentures and smile treatment — for you or a family member. How can I help?";
-
 export default function ChatWidget() {
+  const { lang, t } = useLang();
+  const c = t.chat;
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
-  const [messages, setMessages] = useState([{ role: "assistant", content: GREETING }]);
+  const [messages, setMessages] = useState([{ role: "assistant", content: c.greeting }]);
   const [sessionId] = useState(() => {
     let id = localStorage.getItem("yk-chat-session");
     if (!id) {
@@ -21,6 +21,11 @@ export default function ChatWidget() {
     return id;
   });
   const scrollRef = useRef(null);
+
+  useEffect(() => {
+    setMessages((m) => (m.length === 1 ? [{ role: "assistant", content: c.greeting }] : m));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [lang]);
 
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight, behavior: "smooth" });
@@ -65,7 +70,7 @@ export default function ChatWidget() {
         }
       }
     } catch {
-      appendToLast("I couldn't connect right now. Please try again, or reach us on WhatsApp at +91 90434 32286.");
+      appendToLast(c.error);
     }
     setBusy(false);
   };
@@ -96,9 +101,9 @@ export default function ChatWidget() {
             style={{ height: "min(560px, 70vh)" }}
           >
             <div className="bg-primary text-primary-foreground px-5 py-4">
-              <p className="font-serif text-lg italic">Ask about your treatment options</p>
+              <p className="font-serif text-lg italic">{c.header}</p>
               <p className="font-mono text-[10px] tracking-[0.18em] uppercase text-slate-400 mt-1">
-                General information — not a diagnosis
+                {c.sub}
               </p>
             </div>
             <div ref={scrollRef} data-testid="chat-messages" className="flex-1 overflow-y-auto px-5 py-5 space-y-4 bg-background">
@@ -122,7 +127,7 @@ export default function ChatWidget() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && send()}
-                placeholder="e.g. My mother's dentures keep slipping…"
+                placeholder={c.placeholder}
                 className="flex-1 px-4 py-3 text-sm bg-background border border-input focus:outline-none focus:ring-2 focus:ring-ring/30 transition-colors duration-300"
               />
               <button

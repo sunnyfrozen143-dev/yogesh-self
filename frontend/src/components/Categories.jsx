@@ -1,27 +1,12 @@
 import { ArrowUpRight } from "lucide-react";
 import { Reveal, Overline } from "@/components/Reveal";
 import { scrollToId } from "@/lib/site";
-
-const categories = [
-  {
-    title: "Full-Mouth Rehabilitation",
-    tags: ["Severely worn teeth", "Multiple missing teeth", "Functional & occlusal rehabilitation", "Complex restorative cases"],
-  },
-  {
-    title: "Full-Arch Implant Rehabilitation",
-    tags: ["All-on-4", "All-on-6", "Full-arch fixed teeth", "Implant-supported rehabilitation"],
-  },
-  {
-    title: "Advanced Implant Rehabilitation",
-    tags: ["Zygomatic implants", "Pterygoid implants", "Remote anchorage", "Bone grafting & augmentation"],
-  },
-  {
-    title: "Smile & Aesthetic Rehabilitation",
-    tags: ["Smile design", "Veneers", "Crowns", "Aesthetic rehabilitation"],
-  },
-];
+import { useLang } from "@/lib/LanguageContext";
 
 export default function Categories() {
+  const { t } = useLang();
+  const c = t.categories;
+
   return (
     <section
       data-testid="categories-section"
@@ -31,19 +16,16 @@ export default function Categories() {
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
         <Reveal className="mb-16 lg:mb-20 flex flex-wrap items-end justify-between gap-8">
           <div>
-            <Overline>Clinical scope</Overline>
-            <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.1]">
-              Four areas of <em className="text-slate-500">specialist focus</em>
+            <Overline>{c.overline}</Overline>
+            <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.15]">
+              {c.title} <em className="text-slate-500">{c.titleEm}</em>
             </h2>
           </div>
-          <p className="max-w-sm text-muted-foreground leading-relaxed">
-            Not “everyone who needs dental treatment” — patients whose problems
-            require specialist planning.
-          </p>
+          <p className="max-w-sm text-muted-foreground leading-relaxed">{c.para}</p>
         </Reveal>
 
         <div>
-          {categories.map((cat, i) => (
+          {c.items.map((cat, i) => (
             <Reveal key={cat.title} delay={0.05 * i}>
               <button
                 data-testid={`category-row-${i + 1}`}

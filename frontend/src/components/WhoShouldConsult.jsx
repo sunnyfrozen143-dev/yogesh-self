@@ -1,19 +1,11 @@
 import { Check } from "lucide-react";
 import { Reveal, Overline } from "@/components/Reveal";
-
-const items = [
-  "Multiple missing teeth",
-  "Severely worn teeth",
-  "Loose or uncomfortable dentures",
-  "Difficulty chewing",
-  "Multiple failed dental treatments",
-  "Full-mouth rehabilitation",
-  "Full-arch implant treatment",
-  "Complex aesthetic rehabilitation",
-  "Major smile rehabilitation",
-];
+import { useLang } from "@/lib/LanguageContext";
 
 export default function WhoShouldConsult() {
+  const { t } = useLang();
+  const w = t.who;
+
   return (
     <section
       data-testid="who-should-consult-section"
@@ -23,20 +15,18 @@ export default function WhoShouldConsult() {
         <div className="lg:col-span-5">
           <div className="lg:sticky lg:top-28">
             <Reveal>
-              <Overline>Who should consult</Overline>
-              <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.1]">
-                When should you consult a{" "}
-                <em className="text-slate-500">Prosthodontist?</em>
+              <Overline>{w.overline}</Overline>
+              <h2 className="mt-6 font-serif text-4xl sm:text-5xl tracking-tight leading-[1.15]">
+                {w.title} <em className="text-slate-500">{w.titleEm}</em>
               </h2>
               <p className="mt-8 text-muted-foreground leading-relaxed max-w-md">
-                If you recognise your situation below, your problem may need
-                specialist assessment rather than another routine procedure.
+                {w.para}
               </p>
             </Reveal>
           </div>
         </div>
         <div className="lg:col-span-7">
-          {items.map((item, i) => (
+          {w.items.map((item, i) => (
             <Reveal key={item} delay={i * 0.05}>
               <div
                 data-testid={`consult-reason-${i}`}

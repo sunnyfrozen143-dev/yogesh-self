@@ -20,6 +20,7 @@ import Footer from "@/components/Footer";
 import ChatWidget from "@/components/ChatWidget";
 import Admin from "@/pages/Admin";
 import Article from "@/pages/Article";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 function Landing() {
   const { hash } = useLocation();
@@ -61,13 +62,15 @@ function Landing() {
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/learn/:slug" element={<Article />} />
-        <Route path="/admin" element={<Admin />} />
-      </Routes>
-    </BrowserRouter>
+    <LanguageProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Landing />} />
+          <Route path="/learn/:slug" element={<Article />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </BrowserRouter>
+    </LanguageProvider>
   );
 }
 
